@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "Game3015 A1", "index.html", [
+    [ "Assignment 1", "index.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],

@@ -1,2 +1,8 @@
 ﻿  Aircraft.cpp
+  Game.cpp
+  SceneNode.cpp
+  SpriteNode.cpp
+  World.cpp
+  main.cpp
+  Generating Code...
   A1.vcxproj -> A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\x64\Debug\A1.exe
