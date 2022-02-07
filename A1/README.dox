@@ -1,0 +1,13 @@
+/**
+
+@mainpage Assignment 1
+
+@author Luka Ivicevic
+
+@attention WASD moves the camera
+
+@note zooming in too far causes a problem with my graphics card, my screen goes black for a few seconds and everything comes back. I get some audio problems with my microphone after and have to restart my pc.
+
+This is my assignment 1
+
+*/
