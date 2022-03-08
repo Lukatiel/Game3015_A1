@@ -147,3 +147,16 @@ void SceneNode::move(float x, float y, float z)
 	mWorldPosition.y += y;
 	mWorldPosition.z += z;
 }
+
+void SceneNode::onCommand(const Command& command, const GameTimer& gt)
+{
+	//Command on current node, if category matches
+	if (command.category & getCategory())
+		command.action(*this, gt);
+
+}
+
+unsigned int SceneNode::getCategory() const
+{
+	return Category::Scene;
+}

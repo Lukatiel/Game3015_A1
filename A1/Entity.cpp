@@ -21,6 +21,20 @@ XMFLOAT3 Entity::getVelocity() const
 	return mVelocity;
 }
 
+void Entity::accelerate(XMFLOAT3 velocity)
+{
+	mVelocity.x = mVelocity.x + velocity.x;
+	mVelocity.y = mVelocity.y + velocity.y;
+	mVelocity.z = mVelocity.z + velocity.z;
+}
+
+void Entity::accelerate(float vx, float vy, float vz)
+{
+	mVelocity.x = mVelocity.x + vx;
+	mVelocity.y = mVelocity.y + vy;
+	mVelocity.z = mVelocity.z + vz;
+}
+
 void Entity::updateCurrent(const GameTimer& gt) 
 {
 	XMFLOAT3 mV;

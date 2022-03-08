@@ -1,3 +1,4 @@
+#define NOMINMAX
 #include "World.hpp"
 
 World::World(Game* game)
@@ -13,14 +14,24 @@ World::World(Game* game)
 
 void World::update(const GameTimer& gt)
 {
-	mSceneGraph->update(gt);
+	mPlayerAircraft->setVelocity(0.0f, 0.0f, 0.0f);
+	while (!mCommandQueue.isEmpty())
+		mSceneGraph->onCommand(mCommandQueue.pop(), gt);
 
+	adaptPlayerVelocity();
+	mSceneGraph->update(gt);
+	adaptPlayerPosition();
 	//AirCraft Bouncing
-	if (mPlayerAircraft->getWorldPosition().x < mWorldBounds.x
+	/*if (mPlayerAircraft->getWorldPosition().x < mWorldBounds.x
 		|| mPlayerAircraft->getWorldPosition().x > mWorldBounds.y)
 	{
 		mPlayerAircraft->setVelocity(XMFLOAT3(mPlayerAircraft->getVelocity().x * -1.0f, 0, 0));
-	}
+	}*/
+}
+
+CommandQueue& World::getCommandQueue()
+{
+	return mCommandQueue;
 }
 
 void World::draw()
@@ -60,4 +71,26 @@ void World::buildScene()
 	mSceneGraph->attachChild(std::move(backgroundSprite));
 
 	mSceneGraph->build();
+}
+
+void World::adaptPlayerPosition()
+{
+	const float borderDistance = 10.f;
+
+	XMFLOAT3 position = mPlayerAircraft->getWorldPosition();
+	position.x = std::max(position.x, mWorldBounds.x);
+	position.x = std::min(position.x, mWorldBounds.y);
+	position.z = std::max(position.z, mWorldBounds.z);
+	position.z = std::min(position.z, mWorldBounds.w);
+	mPlayerAircraft->setPosition(position.x, position.y, position.z);
+}
+
+void World::adaptPlayerVelocity()
+{
+	XMFLOAT3 velocity = mPlayerAircraft->getVelocity();
+
+	if (velocity.x != 0.0f && velocity.z != 0.0f)
+	{
+		mPlayerAircraft->setVelocity(velocity.x / std::sqrt(2.f), velocity.y / std::sqrt(2.f), velocity.z / std::sqrt(2.f));
+	}
 }

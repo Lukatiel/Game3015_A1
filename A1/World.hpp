@@ -2,6 +2,8 @@
 #include "SceneNode.hpp"
 #include "Aircraft.hpp"
 #include "SpriteNode.h"
+#include "CommandQueue.h"
+#include "Command.h"
 
 class World
 {
@@ -13,6 +15,12 @@ public:
 	//void								loadTextures();
 	void								buildScene();
 
+	CommandQueue&						getCommandQueue();
+private :
+	CommandQueue						mCommandQueue;
+
+	void								adaptPlayerPosition();
+	void								adaptPlayerVelocity();
 
 private:
 	enum class Layer

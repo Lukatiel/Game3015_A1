@@ -48,6 +48,7 @@ struct RenderItem
 };
 
 class Game;
+struct Command;
 
 class SceneNode
 {
@@ -76,6 +77,10 @@ public:
 	XMFLOAT4X4				getTransform() const;
 
 	void					move(float x, float y, float z);
+
+	void					onCommand(const Command& command, const GameTimer& gt);
+	virtual unsigned int    getCategory() const;
+
 private:
 	virtual void			updateCurrent(const GameTimer& gt);
 	void					updateChildren(const GameTimer& gt);

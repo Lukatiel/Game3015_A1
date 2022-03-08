@@ -1,4 +1,5 @@
 #include "World.hpp"
+#include "Player.h"
 
 class Game : public D3DApp
 {
@@ -11,6 +12,7 @@ public:
 	virtual bool Initialize()override;
 private:
 	virtual void OnResize()override;
+	void ProcessInput();
 	virtual void Update(const GameTimer& gt)override;
 	virtual void Draw(const GameTimer& gt)override;
 
@@ -18,7 +20,7 @@ private:
 	virtual void OnMouseUp(WPARAM btnState, int x, int y)override;
 	virtual void OnMouseMove(WPARAM btnState, int x, int y)override;
 
-	void OnKeyboardInput(const GameTimer& gt);
+	//void OnKeyboardInput(const GameTimer& gt);
 	void UpdateCamera(const GameTimer& gt);
 	void AnimateMaterials(const GameTimer& gt);
 	void UpdateObjectCBs(const GameTimer& gt);
@@ -80,9 +82,10 @@ public:
 	POINT mLastMousePos;
 	Camera mCamera;
 	World mWorld;
+	Player mPlayer;
 
 public:
-	ID3D12GraphicsCommandList*  getCmdList() { return mCommandList.Get(); }
+	ID3D12GraphicsCommandList* getCmdList() { return mCommandList.Get(); }
 	std::vector<std::unique_ptr<RenderItem>>& getRenderItems() { return mAllRitems; }
 	std::unordered_map<std::string, std::unique_ptr<Material>>& getMaterials() { return mMaterials; }
 	std::unordered_map<std::string, std::unique_ptr<MeshGeometry>>& getGeometries() { return mGeometries; }
