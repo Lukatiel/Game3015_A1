@@ -1,0 +1,52 @@
+\hypertarget{_world_8hpp_source}{}\doxysection{World.\+hpp}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}SceneNode.hpp"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}Aircraft.hpp"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}SpriteNode.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}CommandQueue.h"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}Command.h"{}}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{class }\mbox{\hyperlink{class_world}{World}}}
+\DoxyCodeLine{10 \{}
+\DoxyCodeLine{11 \textcolor{keyword}{public}:}
+\DoxyCodeLine{12     \textcolor{keyword}{explicit}                            \mbox{\hyperlink{class_world}{World}}(\mbox{\hyperlink{class_game}{Game}}* game);}
+\DoxyCodeLine{13     \textcolor{keywordtype}{void}                                update(\textcolor{keyword}{const} GameTimer\& gt);}
+\DoxyCodeLine{14     \textcolor{keywordtype}{void}                                draw();}
+\DoxyCodeLine{15     \textcolor{comment}{//void                              loadTextures();}}
+\DoxyCodeLine{16     \textcolor{keywordtype}{void}                                buildScene();}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18     \mbox{\hyperlink{class_command_queue}{CommandQueue}}\& getCommandQueue();}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{keyword}{private}:}
+\DoxyCodeLine{21     \mbox{\hyperlink{class_command_queue}{CommandQueue}}                        mCommandQueue;}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     \textcolor{keywordtype}{void}                                adaptPlayerPosition();}
+\DoxyCodeLine{24     \textcolor{keywordtype}{void}                                adaptPlayerVelocity();}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{keyword}{private}:}
+\DoxyCodeLine{28     \textcolor{keyword}{enum class} Layer}
+\DoxyCodeLine{29     \{}
+\DoxyCodeLine{30         Background,}
+\DoxyCodeLine{31         Air}
+\DoxyCodeLine{32     \};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{keyword}{private}:}
+\DoxyCodeLine{36     \mbox{\hyperlink{class_game}{Game}}* mGame;}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38     \mbox{\hyperlink{class_scene_node}{SceneNode}}* mSceneGraph;}
+\DoxyCodeLine{39     std::array<SceneNode*, 2>   mSceneLayers;}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41     XMFLOAT4                            mWorldBounds;}
+\DoxyCodeLine{42     XMFLOAT2                            mSpawnPosition;}
+\DoxyCodeLine{43     \textcolor{keywordtype}{float}                               mScrollSpeed;}
+\DoxyCodeLine{44     \mbox{\hyperlink{class_aircraft}{Aircraft}}* mPlayerAircraft;}
+\DoxyCodeLine{45     \mbox{\hyperlink{class_sprite_node}{SpriteNode}}* mBackground;}
+\DoxyCodeLine{46     \mbox{\hyperlink{class_aircraft}{Aircraft}}* mEnemy;}
+\DoxyCodeLine{47 \};}
+
+\end{DoxyCode}
