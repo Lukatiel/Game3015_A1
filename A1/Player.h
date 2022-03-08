@@ -1,13 +1,15 @@
 #pragma once
-#include "CommandQueue.h"
-#include <map>	
+#include "Command.h"
+#include <map>
+
+class CommandQueue;
 
 class Player
 {
 public:
 	Player();
-	void HandleEvent(CommandQueue& commands);
-	void HandeRealTimeInput(CommandQueue& commands);
+	void					handleEvent(CommandQueue& commands);
+	void					handleRealtimeInput(CommandQueue& commands);
 
 	enum Action
 	{
@@ -18,16 +20,17 @@ public:
 		ActionCount
 	};
 
-	void AssignKey(Action action, char key);
-	char getAssignedKey(Action action) const;
-private:
-	std::map<char, Action>		mKeyBinding;
-	std::map<Action, Command>	mActionBinding;
-	std::map<char, bool>		mKeyFlag;
+	void					assignKey(Action action, char key);
+	char					getAssignedKey(Action action) const;
 
 private:
-	void InitializeActions();
-	static bool isRealTimeAction(Action action);
+	void					initializeActions();
+	static bool				isRealtimeAction(Action action);
+
+private:
+	std::map<char, Action>					mKeyBinding;
+	std::map<Action, Command>				mActionBinding;
+	std::map<char, bool>					mKeyFlag;
+
 
 };
-

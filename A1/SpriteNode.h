@@ -2,7 +2,7 @@
 #include "Entity.hpp"
 
 class SpriteNode :
-    public Entity
+	public Entity
 {
 public:
 	SpriteNode(Game* game);

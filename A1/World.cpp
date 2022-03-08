@@ -6,9 +6,9 @@ World::World(Game* game)
 	, mGame(game)
 	, mPlayerAircraft(nullptr)
 	, mBackground(nullptr)
-	, mWorldBounds(-1.25f, 1.25f, 200.0f, 0.0f) //Left, Right, Down, Up
+	, mWorldBounds(-4.25f, 4.25f, -3.0f, 3.0f) //Left, Right, Down, Up
 	, mSpawnPosition(0.f, 0.f)
-	, mScrollSpeed(1.0f)		
+	, mScrollSpeed(1.0f)
 {
 }
 
@@ -21,6 +21,7 @@ void World::update(const GameTimer& gt)
 	adaptPlayerVelocity();
 	mSceneGraph->update(gt);
 	adaptPlayerPosition();
+
 	//AirCraft Bouncing
 	/*if (mPlayerAircraft->getWorldPosition().x < mWorldBounds.x
 		|| mPlayerAircraft->getWorldPosition().x > mWorldBounds.y)
@@ -50,16 +51,16 @@ void World::buildScene()
 
 	std::unique_ptr<Aircraft> enemy1(new Aircraft(Aircraft::Type::Raptor, mGame));
 	auto raptor = enemy1.get();
-	raptor->setPosition(0.5f, 0.0f, 1.0f);
+	raptor->setPosition(0.5f, 0.0f, -1.0f);
 	raptor->setScale(1.0f, 1.0f, 1.0f);
-	raptor->setWorldRotation(0.0f,  XM_PI, 0.0f);
+	raptor->setWorldRotation(0.0f, 0.0f, 0.0f);
 	mPlayerAircraft->attachChild(std::move(enemy1));
 
 	std::unique_ptr<Aircraft> enemy2(new Aircraft(Aircraft::Type::Raptor, mGame));
 	auto raptor2 = enemy2.get();
-	raptor2->setPosition(-0.5, 0, 1);
+	raptor2->setPosition(-0.5f, 0.0f, -1.0f);
 	raptor2->setScale(1.0, 1.0, 1.0);
-	raptor2->setWorldRotation(0, XM_PI, 0);
+	raptor2->setWorldRotation(0.0f, 0.0f, 0.0f);
 	mPlayerAircraft->attachChild(std::move(enemy2));
 
 	std::unique_ptr<SpriteNode> backgroundSprite(new SpriteNode(mGame));
@@ -67,7 +68,7 @@ void World::buildScene()
 	//mBackground->setPosition(mWorldBounds.left, mWorldBounds.top);
 	mBackground->setPosition(0, 0, 0.0);
 	mBackground->setScale(200.0, 1.0, 200.0);
-	mBackground->setVelocity(0,0, -mScrollSpeed);
+	mBackground->setVelocity(0, 0, -mScrollSpeed);
 	mSceneGraph->attachChild(std::move(backgroundSprite));
 
 	mSceneGraph->build();
@@ -89,8 +90,7 @@ void World::adaptPlayerVelocity()
 {
 	XMFLOAT3 velocity = mPlayerAircraft->getVelocity();
 
-	if (velocity.x != 0.0f && velocity.z != 0.0f)
-	{
+	if (velocity.x != 0.f && velocity.z != 0.f)
 		mPlayerAircraft->setVelocity(velocity.x / std::sqrt(2.f), velocity.y / std::sqrt(2.f), velocity.z / std::sqrt(2.f));
-	}
+
 }

@@ -21,7 +21,7 @@ bool Game::Initialize()
 		return false;
 
 
-	mMainWndCaption = L"Assignment 2 Submission";
+	mMainWndCaption = L"Assignment Solution";
 
 	mCamera.SetPosition(0.0f, 10.0f, 0.0f);
 	mCamera.Pitch(3.14f / 2.0f);
@@ -198,8 +198,8 @@ void Game::OnMouseMove(WPARAM btnState, int x, int y)
 void Game::ProcessInput()
 {
 	CommandQueue& commands = mWorld.getCommandQueue();
-	mPlayer.HandleEvent(commands);
-	mPlayer.HandeRealTimeInput(commands);
+	mPlayer.handleEvent(commands);
+	mPlayer.handleRealtimeInput(commands);
 }
 
 //void Game::OnKeyboardInput(const GameTimer& gt)

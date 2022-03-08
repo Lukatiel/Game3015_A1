@@ -1,6 +1,7 @@
 #include "CommandQueue.h"
 #include "SceneNode.hpp"
 
+
 void CommandQueue::push(const Command& command)
 {
 	mQueue.push(command);
@@ -17,3 +18,5 @@ bool CommandQueue::isEmpty() const
 {
 	return mQueue.empty();
 }
+
+

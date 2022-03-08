@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "Common/d3dUtil.h"
 #include "Common/MathHelper.h"
 #include "Common/UploadBuffer.h"
@@ -8,7 +7,7 @@
 struct ObjectConstants
 {
     DirectX::XMFLOAT4X4 World = MathHelper::Identity4x4();
-	DirectX::XMFLOAT4X4 TexTransform = MathHelper::Identity4x4();
+    DirectX::XMFLOAT4X4 TexTransform = MathHelper::Identity4x4();
 };
 
 struct PassConstants

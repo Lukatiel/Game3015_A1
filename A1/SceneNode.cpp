@@ -150,10 +150,13 @@ void SceneNode::move(float x, float y, float z)
 
 void SceneNode::onCommand(const Command& command, const GameTimer& gt)
 {
-	//Command on current node, if category matches
+	// Command current node, if category matches
 	if (command.category & getCategory())
 		command.action(*this, gt);
 
+	// Command children
+	for (Ptr& child : mChildren)
+		child->onCommand(command, gt);
 }
 
 unsigned int SceneNode::getCategory() const

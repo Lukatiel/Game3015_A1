@@ -79,7 +79,7 @@ public:
 	void					move(float x, float y, float z);
 
 	void					onCommand(const Command& command, const GameTimer& gt);
-	virtual unsigned int    getCategory() const;
+	virtual unsigned int	getCategory() const;
 
 private:
 	virtual void			updateCurrent(const GameTimer& gt);
@@ -91,13 +91,13 @@ private:
 	void					buildChildren();
 
 protected:
-	Game*					game;
-	RenderItem*				renderer;
+	Game* game;
+	RenderItem* renderer;
 private:
 	XMFLOAT3				mWorldPosition;
 	XMFLOAT3				mWorldRotation;
 	XMFLOAT3				mWorldScaling;
 	std::vector<Ptr>		mChildren;
-	SceneNode*				mParent;
+	SceneNode* mParent;
 };
 

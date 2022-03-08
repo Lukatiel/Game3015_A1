@@ -5,22 +5,24 @@
 #include "CommandQueue.h"
 #include "Command.h"
 
+
 class World
 {
 public:
 	explicit							World(Game* game);
 	void								update(const GameTimer& gt);
 	void								draw();
-
 	//void								loadTextures();
 	void								buildScene();
 
-	CommandQueue&						getCommandQueue();
-private :
+	CommandQueue& getCommandQueue();
+
+private:
 	CommandQueue						mCommandQueue;
 
 	void								adaptPlayerPosition();
 	void								adaptPlayerVelocity();
+
 
 private:
 	enum class Layer

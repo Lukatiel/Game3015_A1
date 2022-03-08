@@ -35,7 +35,7 @@ void Entity::accelerate(float vx, float vy, float vz)
 	mVelocity.z = mVelocity.z + vz;
 }
 
-void Entity::updateCurrent(const GameTimer& gt) 
+void Entity::updateCurrent(const GameTimer& gt)
 {
 	XMFLOAT3 mV;
 	mV.x = mVelocity.x * gt.DeltaTime();

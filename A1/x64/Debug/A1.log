@@ -1,2 +1,20 @@
-﻿  Player.cpp
+﻿  Aircraft.cpp
+  Command.cpp
+  CommandQueue.cpp
+  Camera.cpp
+  d3dApp.cpp
+  d3dUtil.cpp
+  DDSTextureLoader.cpp
+  GameTimer.cpp
+  GeometryGenerator.cpp
+  MathHelper.cpp
+  Entity.cpp
+  FrameResource.cpp
+  Game.cpp
+  main.cpp
+  Player.cpp
+  SceneNode.cpp
+  SpriteNode.cpp
+  World.cpp
+  Generating Code...
   A1.vcxproj -> A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\x64\Debug\A1.exe
