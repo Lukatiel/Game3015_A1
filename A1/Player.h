@@ -1,5 +1,6 @@
 #pragma once
 #include "Command.h"
+#include "Common/d3dApp.h"
 #include <map>
 
 class CommandQueue;
@@ -8,7 +9,7 @@ class Player
 {
 public:
 	Player();
-	void					handleEvent(CommandQueue& commands);
+	void					handleEvent(CommandQueue& commands, WPARAM btnState);
 	void					handleRealtimeInput(CommandQueue& commands);
 
 	enum Action

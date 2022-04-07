@@ -1,0 +1,45 @@
+#include "PauseState.hpp"
+#include "SpriteNode.h"
+#include "Game.hpp"
+#include "GameState.h"
+
+PauseState::PauseState(StateStack* stack, Context* context)
+	: State(stack, context)
+{
+	mCameraPos = XMFLOAT3(0.f, 0.f, -30.f);
+	mTargetPos = XMFLOAT3(0.f, 0.f, 0.f);
+}
+
+void PauseState::Draw()
+{
+	((GameState*)(mStack->GetPreviousState()))->mPauseStateSceneGraph->draw();
+}
+
+bool PauseState::Update(const GameTimer& gt)
+{
+	((GameState*)(mStack->GetPreviousState()))->mPauseStateSceneGraph->update(gt);
+
+	return false;
+}
+
+bool PauseState::HandleEvent(WPARAM btnState)
+{
+	//If ESC is pressed
+	if (btnState == VK_ESCAPE)
+	{
+		RequestStackPop();
+	}
+	//If N is pressed
+	if (btnState == 'N' || btnState == 'n')
+	{
+		RequestStateClear();
+		RequestStackPush(States::Menu);
+	}
+
+	return false;
+}
+
+bool PauseState::HandleRealTimeInput()
+{
+	return false;
+}

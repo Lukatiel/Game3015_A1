@@ -1,17 +1,14 @@
 #pragma once
 #include "SceneNode.hpp"
 
-class Entity :
-	public SceneNode
+class Entity : public SceneNode
 {
 public:
-	Entity(Game* game);
-	void				setVelocity(XMFLOAT3 velocity);
-	void				setVelocity(float vx, float vy, float vz);
-	XMFLOAT3			getVelocity() const;
+	Entity(State* state);
+	~Entity();
 
-	void				accelerate(XMFLOAT3 velocity);
-	void				accelerate(float vx, float vy, float vz);
+	void				setVelocity(FXMVECTOR velocity);
+	XMFLOAT3			getVelocity() const;
 
 
 	virtual	void		updateCurrent(const GameTimer& gt);

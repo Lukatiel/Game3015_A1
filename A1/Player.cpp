@@ -1,15 +1,18 @@
-#pragma region step 2
 #include "Player.h"
 #include "CommandQueue.h"
 #include "Aircraft.hpp"
-#include "Common/MathHelper.h"
+
 #include "Common/d3dApp.h"
+
 #include <map>
 #include <string>
 #include <algorithm>
 #include <stdio.h>
 
+using Microsoft::WRL::ComPtr;
 using namespace DirectX;
+using namespace DirectX::PackedVector;
+
 struct AircraftMover
 {
 	AircraftMover(float vx, float vy, float vz)
@@ -19,7 +22,9 @@ struct AircraftMover
 
 	void operator() (Aircraft& aircraft, const GameTimer&) const
 	{
-		aircraft.accelerate(velocity);
+		XMFLOAT3 currentVelocity = aircraft.getVelocity();
+
+		aircraft.setVelocity(XMVectorAdd(XMLoadFloat3(&currentVelocity), XMLoadFloat3(&velocity));
 	}
 
 	XMFLOAT3 velocity;
@@ -52,7 +57,7 @@ Player::Player()
 		pair.second.category = Category::PlayerAircraft;
 }
 
-void Player::handleEvent(CommandQueue& commands)
+void Player::handleEvent(CommandQueue& commands, WPARAM btnState)
 {
 	for (auto pair : mKeyBinding)
 	{
@@ -111,7 +116,7 @@ char Player::getAssignedKey(Action action) const
 			return pair.first;
 	}
 
-	return 0x00;
+	return 0;
 }
 
 void Player::initializeActions()

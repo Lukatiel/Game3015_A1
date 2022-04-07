@@ -1,17 +1,14 @@
 #pragma once
 #include "Common/d3dApp.h"
-#include "Common/MathHelper.h"
-#include "Common/UploadBuffer.h"
-#include "Common/GeometryGenerator.h"
-#include "Common/Camera.h"
 #include "FrameResource.h"
+#include "Category.hpp"
+
+#include <vector>
+#include <memory>
 
 using Microsoft::WRL::ComPtr;
 using namespace DirectX;
 using namespace DirectX::PackedVector;
-
-#pragma comment(lib, "d3dcompiler.lib")
-#pragma comment(lib, "D3D12.lib")
 
 // Lightweight structure stores parameters to draw a shape.  This will
 // vary from app-to-app.
@@ -22,7 +19,7 @@ struct RenderItem
 	// World matrix of the shape that describes the object's local space
 	// relative to the world space, which defines the position, orientation,
 	// and scale of the object in the world.
-	XMFLOAT4X4 World = MathHelper::Identity4x4();
+	//XMFLOAT4X4 World = MathHelper::Identity4x4();
 
 	XMFLOAT4X4 TexTransform = MathHelper::Identity4x4();
 
@@ -47,8 +44,10 @@ struct RenderItem
 	int BaseVertexLocation = 0;
 };
 
-class Game;
+class State;
 struct Command;
+struct FrameResource;
+
 
 class SceneNode
 {
@@ -57,29 +56,31 @@ public:
 
 
 public:
-	SceneNode(Game* game);
+	SceneNode(State* state);
+	~SceneNode();
 
 	void					attachChild(Ptr child);
 	Ptr						detachChild(const SceneNode& node);
+	const XMFLOAT4X4* GetWorldMatrix() const { return &mWorldMatrix; }
 
 	void					update(const GameTimer& gt);
 	void					draw() const;
 	void					build();
 
-	XMFLOAT3				getWorldPosition() const;
-	void					setPosition(float x, float y, float z);
-	XMFLOAT3				getWorldRotation() const;
-	void					setWorldRotation(float x, float y, float z);
-	XMFLOAT3				getWorldScale() const;
-	void					setScale(float x, float y, float z);
+	void					SetRotation(XMVECTOR rotation) { XMStoreFloat3(&mRotation, rotation); }
+	void					SetPosition(XMVECTOR position) { XMStoreFloat3(&mPosition, position); }
+	void					SetScale(XMVECTOR scale)	   { XMStoreFloat3(&mScale, scale); }
 
-	XMFLOAT4X4				getWorldTransform() const;
-	XMFLOAT4X4				getTransform() const;
+	void					SetTexScale(XMVECTOR scale);
 
-	void					move(float x, float y, float z);
+	XMFLOAT3				GetPosition() const { return mPosition; }
+	XMFLOAT3				GetScale() const { return mScale; }
 
 	void					onCommand(const Command& command, const GameTimer& gt);
-	virtual unsigned int	getCategory() const;
+	unsigned int			getCategory() const {return mCategory; }
+	void					SetCategory(unsigned int category) { mCategory = category; }
+
+	void					SetMatGeoDrawName(std::string materialName, std::string geometriesName, std::string drawArgsName);
 
 private:
 	virtual void			updateCurrent(const GameTimer& gt);
@@ -91,13 +92,21 @@ private:
 	void					buildChildren();
 
 protected:
-	Game* game;
-	RenderItem* renderer;
-private:
-	XMFLOAT3				mWorldPosition;
-	XMFLOAT3				mWorldRotation;
-	XMFLOAT3				mWorldScaling;
-	std::vector<Ptr>		mChildren;
+	State* mState;
+	std::vector<Ptr> mChildren;
 	SceneNode* mParent;
+	RenderItem* mRenderItem;
+	unsigned int mCategory = Category::Scene;
+
+	std::string mMaterialName;
+	std::string mGeometriesName;
+	std::string mDrawArgsName;
+	
+	XMFLOAT3 mScale = XMFLOAT3(1.0f, 1.0f, 1.0f);
+	XMFLOAT3 mRotation = XMFLOAT3(0.0f, 0.0f, 0.0f);
+	XMFLOAT3 mPosition = XMFLOAT3(0.0f, 0.0f, 0.0f);
+
+	XMFLOAT4X4 mWorldMatrix = MathHelper::Identity4x4();
+
 };
 

@@ -1,4 +1,6 @@
 ﻿  Aircraft.cpp
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,21): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\Aircraft.cpp(71,59): warning C4267: '=': conversion from 'size_t' to 'UINT', possible loss of data
   Command.cpp
   CommandQueue.cpp
   Camera.cpp
@@ -9,12 +11,305 @@
   GeometryGenerator.cpp
   MathHelper.cpp
   Entity.cpp
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,21): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
   FrameResource.cpp
   Game.cpp
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,21): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\Game.cpp(109,28): warning C4390: ';': empty controlled statement found; is this the intent?
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\Game.cpp(401,47): warning C4267: '=': conversion from 'size_t' to 'UINT', possible loss of data
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\Game.cpp(422,31): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+  GameState.cpp
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(27,22): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(27,29): error C2061: syntax error: identifier 'Context'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(30,21): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(30,29): error C2061: syntax error: identifier 'ID'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(39,17): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(39,25): error C2061: syntax error: identifier 'ID'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(48,7): error C2143: syntax error: missing ';' before '*'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(48,7): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(48,27): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(49,7): error C2143: syntax error: missing ';' before '*'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(49,7): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(49,27): error C2238: unexpected token(s) preceding ';'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,2): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,18): error C3646: 'createState': unknown override specifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,29): error C2059: syntax error: '('
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,30): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,49): error C2238: unexpected token(s) preceding ';'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(57,41): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(57,49): error C2061: syntax error: identifier 'ID'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(60,3): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(60,14): error C3646: 'stateID': unknown override specifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(60,21): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64,14): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64,21): error C2065: 'StatePtr': undeclared identifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64,7): error C2923: 'std::vector': 'StatePtr' is not a valid template type argument for parameter '_Ty'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64): message : see declaration of 'StatePtr'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64,7): error C2976: 'std::vector': too few template arguments
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector(443): message : see declaration of 'std::vector'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,11): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,19): error C2065: 'ID': undeclared identifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,37): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,44): error C3861: 'StatePtr': identifier not found
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,28): error C2923: 'std::function': 'StatePtr' is not a valid template type argument for parameter '_Fty'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66): message : see declaration of 'StatePtr'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,7): error C2923: 'std::map': 'ID' is not a valid template type argument for parameter '_Kty'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66): message : see declaration of 'ID'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,28): error C3203: 'function': unspecialized class template can't be used as a template argument for template parameter '_Ty', expected a real type
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,7): error C2976: 'std::map': too few template arguments
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\map(75): message : see declaration of 'std::map'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(68,2): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(68,17): error C3646: 'mContext': unknown override specifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(68,25): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(43,23): error C2662: 'bool std::vector<_Ty,_Alloc>::empty(void) noexcept const': cannot convert 'this' pointer from 'const std::vector' to 'const std::vector<_Ty,_Alloc> &'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(43,23): message : Reason: cannot convert from 'const std::vector' to 'const std::vector<_Ty,_Alloc>'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(43,32): message : Conversion requires a second user-defined-conversion operator or constructor
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector(1542,44): message : see declaration of 'std::vector<_Ty,_Alloc>::empty'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,21): error C2662: 'allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::size_type std::vector<_Ty,_Alloc>::size(void) noexcept const': cannot convert 'this' pointer from 'std::vector' to 'const std::vector<_Ty,_Alloc> &'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,21): message : Reason: cannot convert from 'std::vector' to 'const std::vector<_Ty,_Alloc>'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,30): message : Conversion requires a second user-defined-conversion operator or constructor
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector(1547,49): message : see declaration of 'std::vector<_Ty,_Alloc>::size'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\GameState.cpp(6,9): error C2664: 'State::State(StateStack &,State::Context *)': cannot convert argument 1 from 'StateStack *' to 'StateStack &'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\State.hpp(52,2): message : see declaration of 'State::State'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\GameState.cpp(24,54): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   main.cpp
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,21): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  MenuState.cpp
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(27,22): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(27,29): error C2061: syntax error: identifier 'Context'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(30,21): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(30,29): error C2061: syntax error: identifier 'ID'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(39,17): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(39,25): error C2061: syntax error: identifier 'ID'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(48,7): error C2143: syntax error: missing ';' before '*'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(48,7): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(48,27): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(49,7): error C2143: syntax error: missing ';' before '*'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(49,7): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(49,27): error C2238: unexpected token(s) preceding ';'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,2): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,18): error C3646: 'createState': unknown override specifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,29): error C2059: syntax error: '('
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,30): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,49): error C2238: unexpected token(s) preceding ';'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(57,41): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(57,49): error C2061: syntax error: identifier 'ID'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(60,3): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(60,14): error C3646: 'stateID': unknown override specifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(60,21): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64,14): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64,21): error C2065: 'StatePtr': undeclared identifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64,7): error C2923: 'std::vector': 'StatePtr' is not a valid template type argument for parameter '_Ty'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64): message : see declaration of 'StatePtr'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64,7): error C2976: 'std::vector': too few template arguments
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector(443): message : see declaration of 'std::vector'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,11): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,19): error C2065: 'ID': undeclared identifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,37): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,44): error C3861: 'StatePtr': identifier not found
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,28): error C2923: 'std::function': 'StatePtr' is not a valid template type argument for parameter '_Fty'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66): message : see declaration of 'StatePtr'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,7): error C2923: 'std::map': 'ID' is not a valid template type argument for parameter '_Kty'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66): message : see declaration of 'ID'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,28): error C3203: 'function': unspecialized class template can't be used as a template argument for template parameter '_Ty', expected a real type
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,7): error C2976: 'std::map': too few template arguments
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\map(75): message : see declaration of 'std::map'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(68,2): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(68,17): error C3646: 'mContext': unknown override specifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(68,25): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(43,23): error C2662: 'bool std::vector<_Ty,_Alloc>::empty(void) noexcept const': cannot convert 'this' pointer from 'const std::vector' to 'const std::vector<_Ty,_Alloc> &'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(43,23): message : Reason: cannot convert from 'const std::vector' to 'const std::vector<_Ty,_Alloc>'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(43,32): message : Conversion requires a second user-defined-conversion operator or constructor
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector(1542,44): message : see declaration of 'std::vector<_Ty,_Alloc>::empty'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,21): error C2662: 'allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::size_type std::vector<_Ty,_Alloc>::size(void) noexcept const': cannot convert 'this' pointer from 'std::vector' to 'const std::vector<_Ty,_Alloc> &'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,21): message : Reason: cannot convert from 'std::vector' to 'const std::vector<_Ty,_Alloc>'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,30): message : Conversion requires a second user-defined-conversion operator or constructor
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector(1547,49): message : see declaration of 'std::vector<_Ty,_Alloc>::size'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\MenuState.cpp(6,9): error C2664: 'State::State(StateStack &,State::Context *)': cannot convert argument 1 from 'StateStack *' to 'StateStack &'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\State.hpp(52,2): message : see declaration of 'State::State'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\MenuState.cpp(29,54): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  PauseState.cpp
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(27,22): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(27,29): error C2061: syntax error: identifier 'Context'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(30,21): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(30,29): error C2061: syntax error: identifier 'ID'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(39,17): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(39,25): error C2061: syntax error: identifier 'ID'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(48,7): error C2143: syntax error: missing ';' before '*'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(48,7): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(48,27): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(49,7): error C2143: syntax error: missing ';' before '*'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(49,7): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(49,27): error C2238: unexpected token(s) preceding ';'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,2): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,18): error C3646: 'createState': unknown override specifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,29): error C2059: syntax error: '('
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,30): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,49): error C2238: unexpected token(s) preceding ';'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(57,41): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(57,49): error C2061: syntax error: identifier 'ID'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(60,3): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(60,14): error C3646: 'stateID': unknown override specifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(60,21): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64,14): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64,21): error C2065: 'StatePtr': undeclared identifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64,7): error C2923: 'std::vector': 'StatePtr' is not a valid template type argument for parameter '_Ty'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64): message : see declaration of 'StatePtr'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64,7): error C2976: 'std::vector': too few template arguments
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector(443): message : see declaration of 'std::vector'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,11): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,19): error C2065: 'ID': undeclared identifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,37): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,44): error C3861: 'StatePtr': identifier not found
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,28): error C2923: 'std::function': 'StatePtr' is not a valid template type argument for parameter '_Fty'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66): message : see declaration of 'StatePtr'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,7): error C2923: 'std::map': 'ID' is not a valid template type argument for parameter '_Kty'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66): message : see declaration of 'ID'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,28): error C3203: 'function': unspecialized class template can't be used as a template argument for template parameter '_Ty', expected a real type
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,7): error C2976: 'std::map': too few template arguments
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\map(75): message : see declaration of 'std::map'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(68,2): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(68,17): error C3646: 'mContext': unknown override specifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(68,25): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(43,23): error C2662: 'bool std::vector<_Ty,_Alloc>::empty(void) noexcept const': cannot convert 'this' pointer from 'const std::vector' to 'const std::vector<_Ty,_Alloc> &'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(43,23): message : Reason: cannot convert from 'const std::vector' to 'const std::vector<_Ty,_Alloc>'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(43,32): message : Conversion requires a second user-defined-conversion operator or constructor
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector(1542,44): message : see declaration of 'std::vector<_Ty,_Alloc>::empty'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,21): error C2662: 'allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::size_type std::vector<_Ty,_Alloc>::size(void) noexcept const': cannot convert 'this' pointer from 'std::vector' to 'const std::vector<_Ty,_Alloc> &'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,21): message : Reason: cannot convert from 'std::vector' to 'const std::vector<_Ty,_Alloc>'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,30): message : Conversion requires a second user-defined-conversion operator or constructor
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector(1547,49): message : see declaration of 'std::vector<_Ty,_Alloc>::size'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\PauseState.cpp(7,9): error C2664: 'State::State(StateStack &,State::Context *)': cannot convert argument 1 from 'StateStack *' to 'StateStack &'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\State.hpp(52,2): message : see declaration of 'State::State'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\PauseState.cpp(15,24): error C2039: 'GetPreviousState': is not a member of 'StateStack'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\State.hpp(33): message : see declaration of 'StateStack'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\PauseState.cpp(20,24): error C2039: 'GetPreviousState': is not a member of 'StateStack'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\State.hpp(33): message : see declaration of 'StateStack'
   Player.cpp
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\Player.cpp(27): fatal error C1075: '{': no matching token found
+  References.cpp
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,21): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
   SceneNode.cpp
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,21): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
+  Compiling...
   SpriteNode.cpp
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,21): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\SpriteNode.cpp(56,59): warning C4267: '=': conversion from 'size_t' to 'UINT', possible loss of data
+  State.cpp
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(27,22): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(27,29): error C2061: syntax error: identifier 'Context'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(30,21): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(30,29): error C2061: syntax error: identifier 'ID'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(39,17): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(39,25): error C2061: syntax error: identifier 'ID'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(48,7): error C2143: syntax error: missing ';' before '*'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(48,7): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(48,27): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(49,7): error C2143: syntax error: missing ';' before '*'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(49,7): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(49,27): error C2238: unexpected token(s) preceding ';'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,2): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,18): error C3646: 'createState': unknown override specifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,29): error C2059: syntax error: '('
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,30): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,49): error C2238: unexpected token(s) preceding ';'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(57,41): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(57,49): error C2061: syntax error: identifier 'ID'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(60,3): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(60,14): error C3646: 'stateID': unknown override specifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(60,21): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64,14): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64,21): error C2065: 'StatePtr': undeclared identifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64,7): error C2923: 'std::vector': 'StatePtr' is not a valid template type argument for parameter '_Ty'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64): message : see declaration of 'StatePtr'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64,7): error C2976: 'std::vector': too few template arguments
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector(443): message : see declaration of 'std::vector'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,11): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,19): error C2065: 'ID': undeclared identifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,37): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,44): error C3861: 'StatePtr': identifier not found
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,28): error C2923: 'std::function': 'StatePtr' is not a valid template type argument for parameter '_Fty'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66): message : see declaration of 'StatePtr'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,7): error C2923: 'std::map': 'ID' is not a valid template type argument for parameter '_Kty'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66): message : see declaration of 'ID'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,28): error C3203: 'function': unspecialized class template can't be used as a template argument for template parameter '_Ty', expected a real type
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,7): error C2976: 'std::map': too few template arguments
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\map(75): message : see declaration of 'std::map'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(68,2): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(68,17): error C3646: 'mContext': unknown override specifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(68,25): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(43,23): error C2662: 'bool std::vector<_Ty,_Alloc>::empty(void) noexcept const': cannot convert 'this' pointer from 'const std::vector' to 'const std::vector<_Ty,_Alloc> &'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(43,23): message : Reason: cannot convert from 'const std::vector' to 'const std::vector<_Ty,_Alloc>'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(43,32): message : Conversion requires a second user-defined-conversion operator or constructor
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector(1542,44): message : see declaration of 'std::vector<_Ty,_Alloc>::empty'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,21): error C2662: 'allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::size_type std::vector<_Ty,_Alloc>::size(void) noexcept const': cannot convert 'this' pointer from 'std::vector' to 'const std::vector<_Ty,_Alloc> &'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,21): message : Reason: cannot convert from 'std::vector' to 'const std::vector<_Ty,_Alloc>'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,30): message : Conversion requires a second user-defined-conversion operator or constructor
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector(1547,49): message : see declaration of 'std::vector<_Ty,_Alloc>::size'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\State.cpp(11,2): error C2511: 'State::State(StateStack *,State::Context *)': overloaded member function not found in 'State'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\World.hpp(18): message : see declaration of 'State'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\State.cpp(14,42): error C2671: 'State::{ctor}': static member functions do not have 'this' pointers
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\State.cpp(14,19): error C2672: 'std::make_unique': no matching overloaded function found
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\State.cpp(15,1): error C2550: 'State::{ctor}': constructor initializer lists are only allowed on constructor definitions
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\State.cpp(29,27): error C2660: 'StateStack::pushState': function does not take 1 arguments
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(39,7): message : see declaration of 'StateStack::pushState'
+  StateStack.cpp
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,21): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  TitleState.cpp
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(27,22): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(27,29): error C2061: syntax error: identifier 'Context'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(30,21): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(30,29): error C2061: syntax error: identifier 'ID'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(39,17): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(39,25): error C2061: syntax error: identifier 'ID'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(48,7): error C2143: syntax error: missing ';' before '*'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(48,7): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(48,27): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(49,7): error C2143: syntax error: missing ';' before '*'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(49,7): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(49,27): error C2238: unexpected token(s) preceding ';'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,2): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,18): error C3646: 'createState': unknown override specifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,29): error C2059: syntax error: '('
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,30): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(52,49): error C2238: unexpected token(s) preceding ';'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(57,41): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(57,49): error C2061: syntax error: identifier 'ID'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(60,3): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(60,14): error C3646: 'stateID': unknown override specifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(60,21): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64,14): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64,21): error C2065: 'StatePtr': undeclared identifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64,7): error C2923: 'std::vector': 'StatePtr' is not a valid template type argument for parameter '_Ty'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64): message : see declaration of 'StatePtr'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(64,7): error C2976: 'std::vector': too few template arguments
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector(443): message : see declaration of 'std::vector'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,11): error C2653: 'States': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,19): error C2065: 'ID': undeclared identifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,37): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,44): error C3861: 'StatePtr': identifier not found
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,28): error C2923: 'std::function': 'StatePtr' is not a valid template type argument for parameter '_Fty'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66): message : see declaration of 'StatePtr'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,7): error C2923: 'std::map': 'ID' is not a valid template type argument for parameter '_Kty'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66): message : see declaration of 'ID'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,28): error C3203: 'function': unspecialized class template can't be used as a template argument for template parameter '_Ty', expected a real type
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(66,7): error C2976: 'std::map': too few template arguments
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\map(75): message : see declaration of 'std::map'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(68,2): error C2653: 'State': is not a class or namespace name
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(68,17): error C3646: 'mContext': unknown override specifier
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(68,25): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(43,23): error C2662: 'bool std::vector<_Ty,_Alloc>::empty(void) noexcept const': cannot convert 'this' pointer from 'const std::vector' to 'const std::vector<_Ty,_Alloc> &'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(43,23): message : Reason: cannot convert from 'const std::vector' to 'const std::vector<_Ty,_Alloc>'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(43,32): message : Conversion requires a second user-defined-conversion operator or constructor
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector(1542,44): message : see declaration of 'std::vector<_Ty,_Alloc>::empty'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,21): error C2662: 'allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::size_type std::vector<_Ty,_Alloc>::size(void) noexcept const': cannot convert 'this' pointer from 'std::vector' to 'const std::vector<_Ty,_Alloc> &'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,21): message : Reason: cannot convert from 'std::vector' to 'const std::vector<_Ty,_Alloc>'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.hpp(47,30): message : Conversion requires a second user-defined-conversion operator or constructor
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector(1547,49): message : see declaration of 'std::vector<_Ty,_Alloc>::size'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\TitleState.cpp(6,9): error C2664: 'State::State(StateStack &,State::Context *)': cannot convert argument 1 from 'StateStack *' to 'StateStack &'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\State.hpp(52,2): message : see declaration of 'State::State'
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\TitleState.cpp(27,54): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   World.cpp
   Generating Code...
-  A1.vcxproj -> A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\x64\Debug\A1.exe
+A:\School\Game Engine Development 2\Assignments\GAME3015_A1\Game3015_A1\A1\StateStack.cpp(92): warning C4715: 'StateStack::GetPreviousState': not all control paths return a value

@@ -2,8 +2,7 @@
 #include "Entity.hpp"
 #include <string>
 
-class Aircraft :
-	public Entity
+class Aircraft : public Entity
 {
 public:
 
@@ -15,13 +14,15 @@ public:
 
 
 public:
-	Aircraft(Type type, Game* game);
-	virtual unsigned int getCategory() const;
+	Aircraft(State* state);
+	~Aircraft();
+	//virtual unsigned int getCategory() const;
 
 
 private:
-	virtual void		drawCurrent() const;
-	virtual void		buildCurrent();
+	virtual void		UpdateCurrent(const GameTimer& gt);
+	virtual void		drawCurrent() const override;
+	virtual void		buildCurrent() override;
 
 
 private:
