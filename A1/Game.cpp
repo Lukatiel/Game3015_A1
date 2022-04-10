@@ -1,26 +1,19 @@
 #include "Game.hpp"
-
-#include "World.hpp"
 #include "Aircraft.hpp"
 #include "State.hpp"
-#include "Common/GeometryGenerator.h"
 
 #include "TitleState.hpp"
 #include "MenuState.hpp"
 #include "GameState.h"
 #include "PauseState.hpp"
 
-
 const int gNumFrameResources = 3;
 
 Game::Game(HINSTANCE hInstance)
 	: D3DApp(hInstance)
-	, mPlayer()
-	, mStateStack(State::Context(this, &mPlayer))
+	, mWorld(this)
+	, mStateStack(State::Context(this, mPlayer))
 {
-	mClientWidth = 1280;
-	mClientHeight = 720;
-	mMainWndCaption = L"Luka Ivicevic's Final Assignment";
 }
 
 Game::~Game()
@@ -33,6 +26,12 @@ bool Game::Initialize()
 {
 	if (!D3DApp::Initialize())
 		return false;
+
+
+	mMainWndCaption = L"Luka Ivicevic's Final Assignment";
+
+	mCamera.SetPosition(0.0f, 10.0f, 0.0f);
+	mCamera.Pitch(3.14f / 2.0f);
 
 	// Reset the command list to prep for initialization commands.
 	ThrowIfFailed(mCommandList->Reset(mDirectCmdListAlloc.Get(), nullptr));
@@ -47,7 +46,8 @@ bool Game::Initialize()
 	BuildShadersAndInputLayout();
 	BuildShapeGeometry();
 	BuildMaterials();
-	RegisterStates();
+	BuildRenderItems();
+	BuildFrameResources();
 	BuildPSOs();
 	mStateStack.pushState(States::Title);
 
@@ -66,21 +66,22 @@ void Game::OnResize()
 {
 	D3DApp::OnResize();
 
-	 //The window resized, so update the aspect ratio and recompute the projection matrix.
-	XMMATRIX P = XMMatrixPerspectiveFovLH(0.25f * MathHelper::Pi, AspectRatio(), 1.0f, 1000.0f);
-	XMStoreFloat4x4(&mProj, P);
+	// The window resized, so update the aspect ratio and recompute the projection matrix.
+	//XMMATRIX P = XMMatrixPerspectiveFovLH(0.25f * MathHelper::Pi, AspectRatio(), 1.0f, 1000.0f);
+	//XMStoreFloat4x4(&mProj, P);
+
+	mCamera.SetLens(0.25f * MathHelper::Pi, AspectRatio(), 1.0f, 1000.0f);
 }
 
 void Game::Update(const GameTimer& gt)
 {
+	//OnKeyboardInput(gt);
 	mStateStack.Update(gt);
 	mStateStack.handleRealTimeInput();
 
-	//If no state is found
 	if (mStateStack.isEmpty())
 	{
 		PostQuitMessage(0);
-		return;
 	}
 
 	UpdateCamera(gt);
@@ -100,14 +101,13 @@ void Game::Update(const GameTimer& gt)
 	}
 
 	AnimateMaterials(gt);
+	UpdateObjectCBs(gt);
 	UpdateMaterialCBs(gt);
 	UpdateMainPassCB(gt);
 }
 
 void Game::Draw(const GameTimer& gt)
 {
-	if (mStateStack.isEmpty());
-
 	auto cmdListAlloc = mCurrFrameResource->CmdListAlloc;
 
 	// Reuse the memory associated with command recording.
@@ -139,10 +139,8 @@ void Game::Draw(const GameTimer& gt)
 
 	auto passCB = mCurrFrameResource->PassCB->Resource();
 	mCommandList->SetGraphicsRootConstantBufferView(2, passCB->GetGPUVirtualAddress());
-	mCommandList->SetPipelineState(mAlphaTestPSO.Get()); //Set Alpha Blend
 
 	mStateStack.Draw();
-
 	//DrawRenderItems(mCommandList.Get(), mOpaqueRitems);
 
 	// Indicate a state transition on the resource usage.
@@ -190,10 +188,8 @@ void Game::OnMouseMove(WPARAM btnState, int x, int y)
 		float dx = XMConvertToRadians(0.25f * static_cast<float>(x - mLastMousePos.x));
 		float dy = XMConvertToRadians(0.25f * static_cast<float>(y - mLastMousePos.y));
 
-		mTheta += dx;
-		mPhi += dy;
-
-		mPhi = MathHelper::Clamp(mPhi, 0.1f, MathHelper::Pi - 0.1f);
+		mCamera.Pitch(dy);
+		mCamera.RotateY(dx);
 	}
 	else if ((btnState & MK_RBUTTON) != 0)
 	{
@@ -201,48 +197,94 @@ void Game::OnMouseMove(WPARAM btnState, int x, int y)
 		float dx = 0.05f * static_cast<float>(x - mLastMousePos.x);
 		float dy = 0.05f * static_cast<float>(y - mLastMousePos.y);
 
-		//Update the camera radius based on input.
-		mRadius += dx - dy;
+		//To Do
+		// Update the camera radius based on input.
+		//mRadius += dx - dy;
 
-		//Restrict the radius.
-		mRadius = MathHelper::Clamp(mRadius, 5.0f, 150.0f);
+		// Restrict the radius.
+		//mRadius = MathHelper::Clamp(mRadius, 5.0f, 150.0f);
 	}
 
 	mLastMousePos.x = x;
 	mLastMousePos.y = y;
 }
 
-void Game::OnKeyDown(WPARAM btnState)
+void Game::ProcessInput()
 {
-	mStateStack.HandleEvent(btnState);
+	CommandQueue& commands = mWorld.getCommandQueue();
+	mPlayer.handleEvent(commands);
+	mPlayer.handleRealtimeInput(commands);
 }
 
-void Game::HandleRealTimeInput()
-{
-	mStateStack.handleRealTimeInput();
-}
+//void Game::OnKeyboardInput(const GameTimer& gt)
+//{
+//	const float dt = gt.DeltaTime();
+//
+//	mCamera.GetLook();
+//	float tmin = 0;
+//	float buffer = 0.5;
+//	XMFLOAT3  oppositef3(-1, -1, -1);
+//	XMVECTOR opposite = XMLoadFloat3(&oppositef3);
+//
+//	if (GetAsyncKeyState('W') & 0x8000)
+//	{
+//		bool hit = false;
+//
+//		if (!hit)
+//		{
+//			mCamera.Walk(10.0f * dt);
+//
+//		}
+//	}
+//
+//	if (GetAsyncKeyState('S') & 0x8000)
+//	{
+//		bool hit = false;
+//		if (!hit)
+//		{
+//			mCamera.Walk(-10.0f * dt);
+//		}
+//
+//	}
+//	if (GetAsyncKeyState('A') & 0x8000)
+//	{
+//		bool hit = false;
+//		if (!hit)
+//		{
+//			mCamera.Strafe(-10.0f * dt);
+//		}
+//
+//
+//	}
+//	if (GetAsyncKeyState('D') & 0x8000)
+//	{
+//		bool hit = false;
+//		if (!hit)
+//		{
+//			mCamera.Strafe(10.0f * dt);
+//		}
+//	}
+//
+//
+//	mCamera.UpdateViewMatrix();
+//}
 
 void Game::UpdateCamera(const GameTimer& gt)
 {
-	if (mStateStack.GetStackSize() == 0)
-	{
-		return;
-	}
+	// Convert Spherical to Cartesian coordinates.
+	//mEyePos.x = mRadius * sinf(mPhi) * cosf(mTheta);
+	//mEyePos.z = mRadius * sinf(mPhi) * sinf(mTheta);
+	//mEyePos.y = mRadius * cosf(mPhi);
 
-	XMFLOAT3 cameraPos = mStateStack.GetCameraPos();
-	XMFLOAT3 targetPos = mStateStack.GetTargetPos();
+	//// Build the view matrix.
+	//XMVECTOR pos = XMVectorSet(mEyePos.x, mEyePos.y, mEyePos.z, 1.0f);
+	//XMVECTOR target = XMVectorZero();
+	//XMVECTOR up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 
-	mEyePos.x = cameraPos.x;
-	mEyePos.y = cameraPos.y;
-	mEyePos.z = cameraPos.z;
+	//XMMATRIX view = XMMatrixLookAtLH(pos, target, up);
+	//XMStoreFloat4x4(&mView, view);
+	mCamera.UpdateViewMatrix();
 
-	//Build the view Matrix
-	XMVECTOR pos = XMVectorSet(mEyePos.x, mEyePos.y, mEyePos.z, 1.0f);
-	XMVECTOR target = XMVectorSet(targetPos.x, targetPos.y, targetPos.z, 0.0f);
-	XMVECTOR up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
-	XMMATRIX view = XMMatrixLookAtLH(pos, target, up);
-
-	XMStoreFloat4x4(&mView, view);
 }
 
 void Game::AnimateMaterials(const GameTimer& gt)
@@ -250,12 +292,32 @@ void Game::AnimateMaterials(const GameTimer& gt)
 
 }
 
+void Game::UpdateObjectCBs(const GameTimer& gt)
+{
+	auto currObjectCB = mCurrFrameResource->ObjectCB.get();
+	for (auto& e : mAllRitems)
+	{
+		// Only update the cbuffer data if the constants have changed.  
+		// This needs to be tracked per frame resource.
+		if (e->NumFramesDirty > 0)
+		{
+			XMMATRIX world = XMLoadFloat4x4(&e->World);
+			XMMATRIX texTransform = XMLoadFloat4x4(&e->TexTransform);
 
+			ObjectConstants objConstants;
+			XMStoreFloat4x4(&objConstants.World, XMMatrixTranspose(world));
+			XMStoreFloat4x4(&objConstants.TexTransform, XMMatrixTranspose(texTransform));
+
+			currObjectCB->CopyData(e->ObjCBIndex, objConstants);
+
+			// Next FrameResource need to be updated too.
+			e->NumFramesDirty--;
+		}
+	}
+}
 
 void Game::UpdateMaterialCBs(const GameTimer& gt)
 {
-	State* currentState = mStateStack.GetCurrentState();
-	
 	auto currMaterialCB = mCurrFrameResource->MaterialCB.get();
 	for (auto& e : mMaterials)
 	{
@@ -282,8 +344,8 @@ void Game::UpdateMaterialCBs(const GameTimer& gt)
 
 void Game::UpdateMainPassCB(const GameTimer& gt)
 {
-	XMMATRIX view = XMLoadFloat4x4(&mView);
-	XMMATRIX proj = XMLoadFloat4x4(&mProj);
+	XMMATRIX view = mCamera.GetView();
+	XMMATRIX proj = mCamera.GetProj();
 
 	XMMATRIX viewProj = XMMatrixMultiply(view, proj);
 	XMMATRIX invView = XMMatrixInverse(&XMMatrixDeterminant(view), view);
@@ -296,7 +358,7 @@ void Game::UpdateMainPassCB(const GameTimer& gt)
 	XMStoreFloat4x4(&mMainPassCB.InvProj, XMMatrixTranspose(invProj));
 	XMStoreFloat4x4(&mMainPassCB.ViewProj, XMMatrixTranspose(viewProj));
 	XMStoreFloat4x4(&mMainPassCB.InvViewProj, XMMatrixTranspose(invViewProj));
-	mMainPassCB.EyePosW = mEyePos;
+	mMainPassCB.EyePosW = mCamera.GetPosition3f();
 	mMainPassCB.RenderTargetSize = XMFLOAT2((float)mClientWidth, (float)mClientHeight);
 	mMainPassCB.InvRenderTargetSize = XMFLOAT2(1.0f / mClientWidth, 1.0f / mClientHeight);
 	mMainPassCB.NearZ = 1.0f;
@@ -310,8 +372,6 @@ void Game::UpdateMainPassCB(const GameTimer& gt)
 	mMainPassCB.Lights[1].Strength = { 0.3f, 0.3f, 0.3f };
 	mMainPassCB.Lights[2].Direction = { 0.0f, -0.707f, -0.707f };
 	mMainPassCB.Lights[2].Strength = { 0.15f, 0.15f, 0.15f };
-
-	State* currentState = mStateStack.GetCurrentState();
 
 	auto currPassCB = mCurrFrameResource->PassCB.get();
 	currPassCB->CopyData(0, mMainPassCB);
@@ -327,8 +387,7 @@ void Game::LoadTextures()
 	CreateTextures("TitleTextTex", L"Textures/TitleText.dds");
 	CreateTextures("MenuBackgroundTex", L"Textures/Background.dds");
 	CreateTextures("MenuInstructionsTex", L"Textures/MenuInstructions.dds");
-	CreateTextures("PauseOverlayTex", L"Textures/PuaseOverlay.dds");
-
+	CreateTextures("PauseOverlayTex", L"Textures/PauseOverlay.dds");
 }
 
 void Game::CreateTextures(std::string name, std::wstring path)
@@ -398,7 +457,7 @@ void Game::BuildDescriptorHeaps()
 	// Create the SRV heap.
 	//
 	D3D12_DESCRIPTOR_HEAP_DESC srvHeapDesc = {};
-	srvHeapDesc.NumDescriptors = mTextures.size();
+	srvHeapDesc.NumDescriptors = 8;
 	srvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
 	srvHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
 	ThrowIfFailed(md3dDevice->CreateDescriptorHeap(&srvHeapDesc, IID_PPV_ARGS(&mSrvDescriptorHeap)));
@@ -407,7 +466,19 @@ void Game::BuildDescriptorHeaps()
 	// Fill out the heap with actual descriptors.
 	//
 	CD3DX12_CPU_DESCRIPTOR_HANDLE hDescriptor(mSrvDescriptorHeap->GetCPUDescriptorHandleForHeapStart());
+
+	auto EagleTex = mTextures["Eagle"]->Resource;
+	auto RaptorTex = mTextures["Raptor"]->Resource;
+	auto DesertTex = mTextures["Desert"]->Resource;
+	auto TitleBackgroundTex = mTextures["Background"]->Resource;
+	auto TitleTextTex = mTextures["TitleText"]->Resource;
+	auto MenuBackgroundTex = mTextures["Background"]->Resource;
+	auto MenuInstructionsTex = mTextures["MenuInstructions"]->Resource;
+	auto PauseOverlayTex = mTextures["PauseOverlay"]->Resource;
+
 	D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
+
+	
 
 	//This mapping enables the shader resource view (SRV) to choose how memory gets routed to the 4 return components in a shader after a memory fetch.
 	//When a texture is sampled in a shader, it will return a vector of the texture data at the specified texture coordinates.
@@ -419,39 +490,54 @@ void Game::BuildDescriptorHeaps()
 	//The number of mipmap levels to view, starting at MostDetailedMip.This field, along with MostDetailedMip allows us to
 	//specify a subrange of mipmap levels to view.You can specify - 1 to indicate to view
 	//all mipmap levels from MostDetailedMip down to the last mipmap level.
-	srvDesc.Texture2D.MipLevels =0.0f;
 
 	//Specifies the minimum mipmap level that can be accessed. 0.0 means all the mipmap levels can be accessed.
 	//Specifying 3.0 means mipmap levels 3.0 to MipCount - 1 can be accessed.
 	srvDesc.Texture2D.ResourceMinLODClamp = 0.0f;
 
-	for (int i = 0; i < mTexturesName.size(); ++i)
-	{
-		auto texture = mTextures[mTexturesName[i]]->Resource;
+	md3dDevice->CreateShaderResourceView(EagleTex.Get(), &srvDesc, hDescriptor);
 
-		//The number of mipmap levels to view, starting at MostDetailedMip.This field, along with MostDetailedMip allows us to
-		//specify a subrange of mipmap levels to view.You can specify - 1 to indicate to view
-		//all mipmap levels from MostDetailedMip down to the last mipmap level.
-		srvDesc.Texture2D.MipLevels = texture->GetDesc().MipLevels;
-		srvDesc.Format = texture->GetDesc().Format;
+	//Raptor Descriptor
+	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
+	srvDesc.Format = RaptorTex->GetDesc().Format;
+	md3dDevice->CreateShaderResourceView(RaptorTex.Get(), &srvDesc, hDescriptor);
 
-		md3dDevice->CreateShaderResourceView(texture.Get(), &srvDesc, hDescriptor);
-		hDescriptor.Offset(1, mCbvSrvDescriptorSize);
-	}
+	//Desert Descriptor
+	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
+	srvDesc.Format = DesertTex->GetDesc().Format;
+	md3dDevice->CreateShaderResourceView(DesertTex.Get(), &srvDesc, hDescriptor);
+
+	//Title Background Descriptor
+	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
+	srvDesc.Format = DesertTex->GetDesc().Format;
+	md3dDevice->CreateShaderResourceView(TitleBackgroundTex.Get(), &srvDesc, hDescriptor);
+
+	//TitleText Descriptor
+	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
+	srvDesc.Format = DesertTex->GetDesc().Format;
+	md3dDevice->CreateShaderResourceView(TitleTextTex.Get(), &srvDesc, hDescriptor);
+
+	//Menu Background Descriptor
+	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
+	srvDesc.Format = DesertTex->GetDesc().Format;
+	md3dDevice->CreateShaderResourceView(MenuBackgroundTex.Get(), &srvDesc, hDescriptor);
+
+	//Menu Instructions Descriptor
+	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
+	srvDesc.Format = DesertTex->GetDesc().Format;
+	md3dDevice->CreateShaderResourceView(MenuInstructionsTex.Get(), &srvDesc, hDescriptor);
+
+	//Pause Overlay Descriptor
+	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
+	srvDesc.Format = DesertTex->GetDesc().Format;
+	md3dDevice->CreateShaderResourceView(PauseOverlayTex.Get(), &srvDesc, hDescriptor);
 
 }
 
 void Game::BuildShadersAndInputLayout()
 {
-	const D3D_SHADER_MACRO alphaTestDefines[] =
-	{
-		"FOG", "1",
-		NULL, NULL
-	};
-	
 	mShaders["standardVS"] = d3dUtil::CompileShader(L"Shaders\\Default.hlsl", nullptr, "VS", "vs_5_1");
 	mShaders["opaquePS"] = d3dUtil::CompileShader(L"Shaders\\Default.hlsl", nullptr, "PS", "ps_5_1");
-	mShaders["alphaTestedPS"] = d3dUtil::CompileShader(L"Shaders\\Default,hlsl", alphaTestDefines, "PS", "ps_5_1");
 
 	mInputLayout =
 	{
@@ -581,34 +667,27 @@ void Game::BuildPSOs()
 	opaquePsoDesc.SampleDesc.Quality = m4xMsaaState ? (m4xMsaaQuality - 1) : 0;
 	opaquePsoDesc.DSVFormat = mDepthStencilFormat;
 	ThrowIfFailed(md3dDevice->CreateGraphicsPipelineState(&opaquePsoDesc, IID_PPV_ARGS(&mOpaquePSO)));
+}
 
-	//
-	// PSO for alpha tested objects
-	//
-	D3D12_GRAPHICS_PIPELINE_STATE_DESC alphaTestedPsoDesc = opaquePsoDesc;
-	alphaTestedPsoDesc.PS =
+void Game::BuildFrameResources()
+{
+	for (int i = 0; i < gNumFrameResources; ++i)
 	{
-		reinterpret_cast<BYTE*>(mShaders["alphaTestedPS"]->GetBufferPointer()),
-		mShaders["alphaTestedPS"]->GetBufferSize()
-	};
-	alphaTestedPsoDesc.RasterizerState.CullMode = D3D12_CULL_MODE_NONE;
-
-	D3D12_RENDER_TARGET_BLEND_DESC transparencyBlendDesc;
-	transparencyBlendDesc.BlendEnable = true;
-	transparencyBlendDesc.LogicOpEnable = false;
-	transparencyBlendDesc.SrcBlend = D3D12_BLEND_SRC_ALPHA;
-	transparencyBlendDesc.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;
-	transparencyBlendDesc.BlendOp = D3D12_BLEND_OP_ADD;
-	transparencyBlendDesc.SrcBlendAlpha = D3D12_BLEND_ONE;
-	transparencyBlendDesc.DestBlendAlpha = D3D12_BLEND_ZERO;
-	transparencyBlendDesc.BlendOpAlpha = D3D12_BLEND_OP_ADD;
-	transparencyBlendDesc.LogicOp = D3D12_LOGIC_OP_NOOP;
-	transparencyBlendDesc.RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
-
-	alphaTestedPsoDesc.BlendState.RenderTarget[0] = transparencyBlendDesc;
-
-	ThrowIfFailed(md3dDevice->CreateGraphicsPipelineState(&alphaTestedPsoDesc, IID_PPV_ARGS(&mAlphaTestPSO)));
-
+		mFrameResources.push_back(std::make_unique<FrameResource>(md3dDevice.Get(),
+			1, (UINT)mAllRitems.size(), (UINT)mMaterials.size()));
+	}
+}
+void Game::BuildFrameResorces(int renderItemCount)
+{
+	for (int i = 0; i < gNumFrameResources; i++)
+	{
+		mFrameResources.push_back(std::make_unique<FrameResource>(md3dDevice.Get(),
+			1, (UINT)renderItemCount, (UINT)mMaterials.size()));
+	}
+}
+void Game::ResetFrameResources()
+{
+	mFrameResources.clear();
 }
 
 //step13
@@ -623,7 +702,6 @@ void Game::BuildMaterials()
 	CreateMaterials("MenuBackgroundMat", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);
 	CreateMaterials("MenuInstructionsMat", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);
 	CreateMaterials("PauseOverlayMat", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);
-
 }
 
 void Game::CreateMaterials(std::string name, XMFLOAT4 diffuseAlbedo, XMFLOAT3 fresnelR0, float roughness)
@@ -639,20 +717,6 @@ void Game::CreateMaterials(std::string name, XMFLOAT4 diffuseAlbedo, XMFLOAT3 fr
 	mMaterials[name] = std::move(material);
 }
 
-void Game::BuildFrameResorces(int renderItemCount)
-{
-	for (int i = 0; i < gNumFrameResources; ++i)
-	{
-		mFrameResources.push_back(std::make_unique<FrameResource>(md3dDevice.Get(),
-			1, (UINT)renderItemCount, (UINT)mMaterials.size()));
-	}
-}
-
-void Game::ResetFrameResources()
-{
-	mFrameResources.clear();
-}
-
 void Game::RegisterStates()
 {
 	//Just registering states
@@ -660,6 +724,48 @@ void Game::RegisterStates()
 	mStateStack.registerState<MenuState>(States::Menu);
 	mStateStack.registerState<GameState>(States::Game);
 	mStateStack.registerState<PauseState>(States::Pause);
+}
+
+void Game::BuildRenderItems()
+{
+	mWorld.buildScene();
+
+	// All the render items are opaque.
+	for (auto& e : mAllRitems)
+		mOpaqueRitems.push_back(e.get());
+}
+
+void Game::DrawRenderItems(ID3D12GraphicsCommandList* cmdList, const std::vector<RenderItem*>& ritems)
+{
+	UINT objCBByteSize = d3dUtil::CalcConstantBufferByteSize(sizeof(ObjectConstants));
+	UINT matCBByteSize = d3dUtil::CalcConstantBufferByteSize(sizeof(MaterialConstants));
+
+	auto objectCB = mCurrFrameResource->ObjectCB->Resource();
+	auto matCB = mCurrFrameResource->MaterialCB->Resource();
+
+	// For each render item...
+	for (size_t i = 0; i < ritems.size(); ++i)
+	{
+		auto ri = ritems[i];
+
+		cmdList->IASetVertexBuffers(0, 1, &ri->Geo->VertexBufferView());
+		cmdList->IASetIndexBuffer(&ri->Geo->IndexBufferView());
+		cmdList->IASetPrimitiveTopology(ri->PrimitiveType);
+
+		//step18
+		CD3DX12_GPU_DESCRIPTOR_HANDLE tex(mSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart());
+		tex.Offset(ri->Mat->DiffuseSrvHeapIndex, mCbvSrvDescriptorSize);
+
+		D3D12_GPU_VIRTUAL_ADDRESS objCBAddress = objectCB->GetGPUVirtualAddress() + ri->ObjCBIndex * objCBByteSize;
+		D3D12_GPU_VIRTUAL_ADDRESS matCBAddress = matCB->GetGPUVirtualAddress() + ri->Mat->MatCBIndex * matCBByteSize;
+
+		//step19
+		cmdList->SetGraphicsRootDescriptorTable(0, tex);
+		cmdList->SetGraphicsRootConstantBufferView(1, objCBAddress);
+		cmdList->SetGraphicsRootConstantBufferView(3, matCBAddress);
+
+		cmdList->DrawIndexedInstanced(ri->IndexCount, 1, ri->StartIndexLocation, ri->BaseVertexLocation, 0);
+	}
 }
 
 //step21

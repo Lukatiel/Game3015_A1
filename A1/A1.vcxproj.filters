@@ -16,6 +16,9 @@
     <Filter Include="Common">
       <UniqueIdentifier>{22bc3bec-1115-4c90-b9b0-fc370f0904d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Textures">
+      <UniqueIdentifier>{67d4054c-85c6-4ade-9b78-10e8c01e9171}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\Default.hlsl">
@@ -207,5 +210,31 @@
     <ClInclude Include="References.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Textures\Background.dds">
+      <Filter>Textures</Filter>
+    </Image>
+    <Image Include="Textures\MenuInstructions.dds">
+      <Filter>Textures</Filter>
+    </Image>
+    <Image Include="Textures\PauseOverlay.dds">
+      <Filter>Textures</Filter>
+    </Image>
+    <Image Include="Textures\TitleText.dds">
+      <Filter>Textures</Filter>
+    </Image>
+    <Image Include="Textures\Desert.dds">
+      <Filter>Textures</Filter>
+    </Image>
+    <Image Include="Textures\Eagle.dds">
+      <Filter>Textures</Filter>
+    </Image>
+    <Image Include="Textures\Raptor.dds">
+      <Filter>Textures</Filter>
+    </Image>
+    <Image Include="Textures\stone.dds">
+      <Filter>Textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>

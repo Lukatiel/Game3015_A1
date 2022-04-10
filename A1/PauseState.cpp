@@ -3,11 +3,10 @@
 #include "Game.hpp"
 #include "GameState.h"
 
-PauseState::PauseState(StateStack* stack, Context* context)
+PauseState::PauseState(StateStack& stack, Context context)
 	: State(stack, context)
 {
-	mCameraPos = XMFLOAT3(0.f, 0.f, -30.f);
-	mTargetPos = XMFLOAT3(0.f, 0.f, 0.f);
+
 }
 
 void PauseState::Draw()

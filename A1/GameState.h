@@ -5,7 +5,7 @@
 class GameState : public State
 {
 public:
-	GameState(StateStack* stack, Context* context);
+	GameState(StateStack& stack, Context context);
 
 	virtual void Draw();
 	virtual bool Update(const GameTimer& gt);
@@ -15,10 +15,10 @@ public:
 	std::unique_ptr<SpriteNode> back;
 
 private:
-	World mWorld;
+	World* mWorld;
 	Player* mPlayer;
 
-public :
+public:
 	std::unique_ptr<SceneNode> mPauseStateSceneGraph;
 };
 

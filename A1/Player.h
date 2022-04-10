@@ -9,7 +9,7 @@ class Player
 {
 public:
 	Player();
-	void					handleEvent(CommandQueue& commands, WPARAM btnState);
+	void					handleEvent(CommandQueue& commands);
 	void					handleRealtimeInput(CommandQueue& commands);
 
 	enum Action

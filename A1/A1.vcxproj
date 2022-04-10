@@ -238,6 +238,16 @@
     <ClInclude Include="TitleState.hpp" />
     <ClInclude Include="World.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Textures\Background.dds" />
+    <Image Include="Textures\Desert.dds" />
+    <Image Include="Textures\Eagle.dds" />
+    <Image Include="Textures\MenuInstructions.dds" />
+    <Image Include="Textures\PauseOverlay.dds" />
+    <Image Include="Textures\Raptor.dds" />
+    <Image Include="Textures\stone.dds" />
+    <Image Include="Textures\TitleText.dds" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

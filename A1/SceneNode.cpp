@@ -1,18 +1,14 @@
 #include "SceneNode.hpp"
 #include "Game.hpp"
 
-SceneNode::SceneNode(State* state)
-	: mState(state)
-	, mChildren()
+SceneNode::SceneNode(Game* game)
+	: mChildren()
 	, mParent(nullptr)
-	
+	, game(game)
 {
-	
-}
-
-SceneNode::~SceneNode()
-{
-
+	mWorldPosition = XMFLOAT3(0, 0, 0);
+	mWorldScaling = XMFLOAT3(1, 1, 1);
+	mWorldRotation = XMFLOAT3(0, 0, 0);
 }
 
 void SceneNode::attachChild(Ptr child)
@@ -40,10 +36,7 @@ void SceneNode::update(const GameTimer& gt)
 
 void SceneNode::updateCurrent(const GameTimer& gt)
 {
-	XMStoreFloat4x4(&mWorldMatrix,
-		XMMatrixScalingFromVector(XMLoadFloat3(&mScale)) *
-		XMMatrixRotationRollPitchYawFromVector(XMLoadFloat3(&mRotation)) *
-		XMMatrixTranslationFromVector(XMLoadFloat3(&mPosition)));
+	// Do nothing by default
 }
 
 void SceneNode::updateChildren(const GameTimer& gt)
@@ -92,6 +85,68 @@ void SceneNode::buildChildren()
 	}
 }
 
+XMFLOAT3 SceneNode::getWorldPosition() const
+{
+	return mWorldPosition;
+}
+
+void SceneNode::setPosition(float x, float y, float z)
+{
+	mWorldPosition = XMFLOAT3(x, y, z);
+}
+
+XMFLOAT3 SceneNode::getWorldRotation() const
+{
+	return mWorldRotation;
+}
+
+void SceneNode::setWorldRotation(float x, float y, float z)
+{
+	mWorldRotation = XMFLOAT3(x, y, z);
+}
+
+XMFLOAT3 SceneNode::getWorldScale() const
+{
+	return mWorldScaling;
+}
+
+void SceneNode::setScale(float x, float y, float z)
+{
+	mWorldScaling = XMFLOAT3(x, y, z);
+}
+
+XMFLOAT4X4 SceneNode::getWorldTransform() const
+{
+	XMFLOAT4X4 transform = MathHelper::Identity4x4();
+	XMMATRIX T = XMLoadFloat4x4(&transform);
+
+	for (const SceneNode* node = this; node != nullptr; node = node->mParent)
+	{
+		XMMATRIX Tp = XMLoadFloat4x4(&node->getTransform());
+		T = Tp * T;
+	}
+	XMStoreFloat4x4(&transform, T);
+
+	return transform;
+}
+
+XMFLOAT4X4 SceneNode::getTransform() const
+{
+	XMFLOAT4X4 transform;
+	XMStoreFloat4x4(&transform, XMMatrixScaling(mWorldScaling.x, mWorldScaling.y, mWorldScaling.z) *
+		XMMatrixRotationX(mWorldRotation.x) *
+		XMMatrixRotationY(mWorldRotation.y) *
+		XMMatrixRotationZ(mWorldRotation.z) *
+		XMMatrixTranslation(mWorldPosition.x, mWorldPosition.y, mWorldPosition.z));
+	return transform;
+}
+
+void SceneNode::move(float x, float y, float z)
+{
+	mWorldPosition.x += x;
+	mWorldPosition.y += y;
+	mWorldPosition.z += z;
+}
 
 void SceneNode::onCommand(const Command& command, const GameTimer& gt)
 {
@@ -111,7 +166,7 @@ void SceneNode::SetMatGeoDrawName(std::string materialName, std::string geometri
 	mDrawArgsName = drawArgsName;
 }
 
-void SceneNode::SetTexScale(XMVECTOR scale)
+unsigned int SceneNode::getCategory() const
 {
-	XMStoreFloat4x4(&mRenderItem->TexTransform, XMMatrixScalingFromVector(scale));
+	return Category::Scene;
 }

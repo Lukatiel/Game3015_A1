@@ -64,25 +64,6 @@ void StateStack::clearStates()
 	mPendingList.push_back(PendingChange(Clear));
 }
 
-XMFLOAT3 StateStack::GetCameraPos()
-{
-	if (mStack.size() != 0)
-	{
-		return mStack.back()->GetCameraPos();
-	}
-
-	return XMFLOAT3(0.0f, 0.0f, 0.0f);
-}
-
-XMFLOAT3 StateStack::GetTargetPos()
-{
-	if (mStack.size() != 0)
-	{
-		return mStack.back()->GetTargetPos();
-	}
-	return XMFLOAT3(0.0f, 0.0f, 0.0f);
-}
-
 State* StateStack::GetPreviousState()
 {
 	if (mStack.size() >= 2)
@@ -127,11 +108,11 @@ StateStack::PendingChange::PendingChange(Action action, States::ID stateID)
 }
 
 
-template <typename T>
-void StateStack::registerState(States::ID stateID)
-{
-	mFactories[stateID] = [this]()
-	{
-		return State::StatePtr(new T(this, &mContext));
-	};
-}
+//template <typename T>
+//void StateStack::registerState(States::ID stateID)
+//{
+//	mFactories[stateID] = [this]()
+//	{
+//		return State::StatePtr(new T(this, &mContext));
+//	};
+//}

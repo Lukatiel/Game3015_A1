@@ -1,34 +1,32 @@
 #define NOMINMAX
 #include "World.hpp"
-#include "Aircraft.hpp"
-#include "SpriteNode.h"
 
-World::World(State* state)
-	: mSceneGraph(new SceneNode(state))
-	, mState(state)
+World::World(Game* game)
+	: mSceneGraph(new SceneNode(game))
+	, mGame(game)
 	, mPlayerAircraft(nullptr)
 	, mBackground(nullptr)
+	, mWorldBounds(-4.25f, 4.25f, -3.0f, 3.0f) //Left, Right, Down, Up
+	, mSpawnPosition(0.f, 0.f)
+	, mScrollSpeed(1.0f)
 {
-}
-
-World::~World()
-{
-
 }
 
 void World::update(const GameTimer& gt)
 {
-	//Forward commands to scene graph, adapt velocity
+	mPlayerAircraft->setVelocity(0.0f, 0.0f, 0.0f);
 	while (!mCommandQueue.isEmpty())
-	{
 		mSceneGraph->onCommand(mCommandQueue.pop(), gt);
-	}
 
 	adaptPlayerVelocity();
-
 	mSceneGraph->update(gt);
-
 	adaptPlayerPosition();
+
+}
+
+CommandQueue& World::getCommandQueue()
+{
+	return mCommandQueue;
 }
 
 void World::draw()
@@ -38,87 +36,55 @@ void World::draw()
 
 void World::buildScene()
 {
-	//Add background
-	std::unique_ptr<SpriteNode> backgroundSprite = std::make_unique<SpriteNode>(mState);
+	std::unique_ptr<Aircraft> player(new Aircraft(Aircraft::Type::Eagle, mGame));
+	mPlayerAircraft = player.get();
+	mPlayerAircraft->setPosition(0.0f, 0.1f, 0.0f);
+	mPlayerAircraft->setScale(0.5f, 0.5f, 0.5f);
+	mPlayerAircraft->setVelocity(mScrollSpeed, 0.0f, 0.0f);
+	mSceneGraph->attachChild(std::move(player));
+
+	std::unique_ptr<Aircraft> enemy1(new Aircraft(Aircraft::Type::Raptor, mGame));
+	auto raptor = enemy1.get();
+	raptor->setPosition(0.5f, 0.0f, -1.0f);
+	raptor->setScale(1.0f, 1.0f, 1.0f);
+	raptor->setWorldRotation(0.0f, 0.0f, 0.0f);
+	mPlayerAircraft->attachChild(std::move(enemy1));
+
+	std::unique_ptr<Aircraft> enemy2(new Aircraft(Aircraft::Type::Raptor, mGame));
+	auto raptor2 = enemy2.get();
+	raptor2->setPosition(-0.5f, 0.0f, -1.0f);
+	raptor2->setScale(1.0, 1.0, 1.0);
+	raptor2->setWorldRotation(0.0f, 0.0f, 0.0f);
+	mPlayerAircraft->attachChild(std::move(enemy2));
+
+	std::unique_ptr<SpriteNode> backgroundSprite(new SpriteNode(mGame));
 	mBackground = backgroundSprite.get();
-	backgroundSprite->SetMatGeoDrawName("DesertMat", "shapeGeo", "quad");
-	backgroundSprite->SetScale(XMVectorSet(50, 200, 1, 0));
-	backgroundSprite->SetPosition(XMVectorSet(0, 0, 1, 0));
-	backgroundSprite->setVelocity(XMVectorSet(0.f, -3.f, 0.f, 0.f));
+	//mBackground->setPosition(mWorldBounds.left, mWorldBounds.top);
+	mBackground->setPosition(0, 0, 0.0);
+	mBackground->setScale(200.0, 1.0, 200.0);
+	mBackground->setVelocity(0, 0, -mScrollSpeed);
 	mSceneGraph->attachChild(std::move(backgroundSprite));
 
-
-	//Add player aircraft
-	std::unique_ptr<Aircraft> playerAircraft = std::make_unique<Aircraft>(mState);
-	mPlayerAircraft = playerAircraft.get();
-	playerAircraft->SetMatGeoDrawName("EagleMat", "shapeGeo", "quad");
-	playerAircraft->SetScale(XMVectorSet(1, 1, 1, 0));
-	playerAircraft->SetPosition(XMVectorSet(0, 0, 0, 0));
-	playerAircraft->setVelocity(XMVectorSet(0.f, 0.f, 0.f, 0.f));
-	playerAircraft->SetCategory(Category::PlayerAircraft);
-	mSceneGraph->attachChild(std::move(playerAircraft));
-
-	//left Escort
-	std::unique_ptr<Aircraft> leftEscort = std::make_unique<Aircraft>(mState);
-	leftEscort->SetMatGeoDrawName("RaptorMat", "shapeGeo", "quad");
-	leftEscort->SetScale(XMVectorSet(1, 1, 1, 0));
-	leftEscort->SetPosition(XMVectorSet(-1, -1, 0, 0));
-	leftEscort->SetCategory(Category::AlliedAircraft);
-	mPlayerAircraft->attachChild(std::move(leftEscort));
-
-	//right Escort
-	std::unique_ptr<Aircraft> rightEscort = std::make_unique<Aircraft>(mState);
-	rightEscort->SetMatGeoDrawName("RaptorMat", "shapeGeo", "quad");
-	rightEscort->SetScale(XMVectorSet(1, 1, 1, 0));
-	rightEscort->SetPosition(XMVectorSet(1, -1, 0, 0));
-	rightEscort->SetCategory(Category::AlliedAircraft);
-	mPlayerAircraft->attachChild(std::move(rightEscort));
-
-	//Build scene graph with render item
 	mSceneGraph->build();
-
-
-	// Set background texture scale
-	mBackground->SetTexScale(XMVectorSet(3, 10, 1, 0));
 }
 
 void World::adaptPlayerPosition()
 {
-	XMFLOAT3 position = mPlayerAircraft->GetPosition();
+	const float borderDistance = 10.f;
 
-	if (position.x <= -15)
-	{
-		position.x = -15;
-	}
-	if (position.x >= 15)
-	{
-		position.x = 15;
-	}
-
-	if (position.y >= 10)
-	{
-		position.y = 10;
-	}
-	if (position.y <= -10)
-	{
-		position.y = -10;
-	}
-
-	mPlayerAircraft->SetPosition(XMLoadFloat3(&position));
+	XMFLOAT3 position = mPlayerAircraft->getWorldPosition();
+	position.x = std::max(position.x, mWorldBounds.x);
+	position.x = std::min(position.x, mWorldBounds.y);
+	position.z = std::max(position.z, mWorldBounds.z);
+	position.z = std::min(position.z, mWorldBounds.w);
+	mPlayerAircraft->setPosition(position.x, position.y, position.z);
 }
 
 void World::adaptPlayerVelocity()
 {
 	XMFLOAT3 velocity = mPlayerAircraft->getVelocity();
 
-	XMFLOAT3 magnitude;
-	XMStoreFloat3(&magnitude, XMVector3Length(XMLoadFloat3(&velocity)));
-
-	if (magnitude.x >= mPlayerMaxSpeed)
-	{
-		XMVECTOR normalized = XMVector3Normalize(XMLoadFloat3(&velocity));
-		XMVECTOR maxVelocity = normalized * mPlayerMaxSpeed;
-		mPlayerAircraft->setVelocity(maxVelocity);
-	}
+	if (velocity.x != 0.f && velocity.z != 0.f)
+		mPlayerAircraft->setVelocity(velocity.x / std::sqrt(2.f), velocity.y / std::sqrt(2.f), velocity.z / std::sqrt(2.f));
 
 }

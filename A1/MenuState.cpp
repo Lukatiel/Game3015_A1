@@ -2,41 +2,43 @@
 #include "SpriteNode.h"
 #include "Game.hpp"
 
-MenuState::MenuState(StateStack* stack, Context* context)
+MenuState::MenuState(StateStack& stack, Context context)
 	: State(stack, context)
+	, mWorld(&(context.game->mWorld))
 {
-	mCameraPos = XMFLOAT3(0.0f, 0.0f, -10.0f);
-	mTargetPos = XMFLOAT3(0.0f, 0.0f, 0.0f);
-
+	context.game->mAllRitems.clear();
+	context.game->mOpaqueRitems.clear();
+	context.game->ResetFrameResources();
+	
 	// Background
-	std::unique_ptr<SpriteNode> backgroundSprite = std::make_unique<SpriteNode>(this);
+	std::unique_ptr<SpriteNode> backgroundSprite = std::make_unique<SpriteNode>(context.game);
 	backgroundSprite->SetMatGeoDrawName("MenuBackgroundMat", "shapeGeo", "quad");
-	backgroundSprite->SetScale(XMVectorSet(17, 11, 1, 0));
-	backgroundSprite->SetPosition(XMVectorSet(0, 0, 1, 0));
-	mSceneGraph->attachChild(std::move(backgroundSprite));
+	backgroundSprite->setScale(17, 11, 1);
+	backgroundSprite->setPosition(0, 0, 1);
+	mWorld->GetSceneGraph()->attachChild(std::move(backgroundSprite));
 
 	// Text
-	std::unique_ptr<SpriteNode> textSprite = std::make_unique<SpriteNode>(this);
+	std::unique_ptr<SpriteNode> textSprite = std::make_unique<SpriteNode>(context.game);
 	textSprite->SetMatGeoDrawName("MenuInstructionsMat", "shapeGeo", "quad");
-	textSprite->SetScale(XMVectorSet(7, 4, 1, 0));
-	textSprite->SetPosition(XMVectorSet(0, -2, 0, 0));
-	mSceneGraph->attachChild(std::move(textSprite));
+	textSprite->setScale(7, 4, 1);
+	textSprite->setPosition(0, -2, 0);
+	mWorld->GetSceneGraph()->attachChild(std::move(textSprite));
 
-	mSceneGraph->build();
+	mWorld->GetSceneGraph()->build();
 
-	mContext->game->ResetFrameResources();
+	//context.game->ResetFrameResources();
 
-	mContext->game->BuildFrameResorces(mAllRitems.size());
+	context.game->BuildFrameResorces(context.game->mAllRitems.size());
 }
 
 void MenuState::Draw()
 {
-	mSceneGraph->draw();
+	mWorld->GetSceneGraph()->draw();
 }
 
 bool MenuState::Update(const GameTimer& gt)
 {
-	mSceneGraph->update(gt);
+	mWorld->GetSceneGraph()->update(gt);
 
 	return true;
 }

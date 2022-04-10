@@ -5,11 +5,10 @@ class SpriteNode :
 	public Entity
 {
 public:
-	SpriteNode(State* state);
-	~SpriteNode();
+	SpriteNode(Game* game);
+	RenderItem* mSpriteNodeRitem;
 
 private:
 	virtual void		drawCurrent() const;
 	virtual void		buildCurrent();
-	virtual void		UpdateCurrent(const GameTimer& gt);
 };

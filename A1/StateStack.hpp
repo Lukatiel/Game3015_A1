@@ -9,9 +9,8 @@
 #include <functional>
 #include <map>
 
-using Microsoft::WRL::ComPtr;
-using namespace DirectX;
-using namespace DirectX::PackedVector;
+
+class Game;
 
 class StateStack
 {
@@ -28,10 +27,9 @@ public:
 
 	template <typename T>
 	void registerState(States::ID stateID);
-	
+
 
 	void Update(const GameTimer& timer);
-	void FrameResourceUpdate();
 	void Draw();
 	void HandleEvent(WPARAM btnState);
 	void handleRealTimeInput();
@@ -42,8 +40,7 @@ public:
 
 	bool isEmpty() const { return mStack.empty(); }
 
-	XMFLOAT3 GetCameraPos();
-	XMFLOAT3 GetTargetPos();
+
 	int GetStackSize() { return mStack.size(); }
 	State* GetCurrentState() { return mStack.back().get(); }
 	State* GetPreviousState();
@@ -68,4 +65,13 @@ private:
 	State::Context mContext;
 
 };
+
+template <typename T>
+void StateStack::registerState(States::ID stateID)
+{
+	mFactories[stateID] = [this]()
+	{
+		return State::StatePtr(new T(*this, mContext));
+	};
+}
 #endif

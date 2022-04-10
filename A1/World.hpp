@@ -1,35 +1,26 @@
 #pragma once
-#include "FrameResource.h"
 #include "SceneNode.hpp"
+#include "Aircraft.hpp"
+#include "SpriteNode.h"
 #include "CommandQueue.h"
 #include "Command.h"
 
-#include "Common/d3dApp.h"
-#include "Common/MathHelper.h"
-#include "Common/UploadBuffer.h"
-#include "Common/GeometryGenerator.h"
-
-using Microsoft::WRL::ComPtr;
-using namespace DirectX;
-using namespace DirectX::PackedVector;
-
-class Aircraft;
-class SpriteNode;
-class State;
 
 class World
 {
 public:
-	World(State* state);
-	~World();
+	explicit							World(Game* game);
 	void								update(const GameTimer& gt);
 	void								draw();
 	//void								loadTextures();
+	SceneNode* GetSceneGraph() { return mSceneGraph; }
 	void								buildScene();
 
-	const Aircraft* GetPlayer() const { return mPlayerAircraft; }
+	CommandQueue& getCommandQueue();
 
-	CommandQueue& GetCommandQueue() { return mCommandQueue; };
+private:
+	CommandQueue						mCommandQueue;
+
 	void								adaptPlayerPosition();
 	void								adaptPlayerVelocity();
 
@@ -37,16 +28,21 @@ public:
 private:
 	enum class Layer
 	{
-		Air,
 		Background,
-		LayerCount
+		Air
 	};
 
-	State* mState;
-	CommandQueue mCommandQueue;
+
+private:
+	Game* mGame;
+
 	SceneNode* mSceneGraph;
 	std::array<SceneNode*, 2>	mSceneLayers;
+
+	XMFLOAT4							mWorldBounds;
+	XMFLOAT2		    				mSpawnPosition;
+	float								mScrollSpeed;
 	Aircraft* mPlayerAircraft;
 	SpriteNode* mBackground;
-	float mPlayerMaxSpeed = 5.0f;
+	Aircraft* mEnemy;
 };
